@@ -7,7 +7,7 @@ import { Background } from '~/components/shared';
 
 import * as S from './styles';
 
-export default function SignIn() {
+export default function SignIn({ navigation }) {
   return (
     <Background>
       <S.Container>
@@ -28,7 +28,7 @@ export default function SignIn() {
           />
           <S.SubmmitButton>Acessar</S.SubmmitButton>
         </S.Form>
-        <S.SignLink>
+        <S.SignLink onPress={() => navigation.navigate('SignUp')}>
           <S.SignLinkText>Criar conta gratuita</S.SignLinkText>
         </S.SignLink>
       </S.Container>
