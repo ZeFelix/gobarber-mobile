@@ -5,7 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import SignUp from '~/pages/SignUp';
 import SignIn from '~/pages/SignIn';
+
 import Dashboard from '~/pages/Dashboard';
+import Profile from '~/pages/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,9 +22,19 @@ function routesUnSigned() {
 }
 
 function routesSigned() {
+  const tabBarOptions = {
+    activeTintColor: '#fff',
+    inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
+    style: {
+      backgroundColor: '#8d41e8',
+    },
+    keyboardHidesTabBar: true,
+  };
+
   return (
-    <Tab.Navigator>
+    <Tab.Navigator tabBarOptions={tabBarOptions}>
       <Tab.Screen name="Dashboard" component={Dashboard} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
