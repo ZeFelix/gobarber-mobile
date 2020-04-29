@@ -55,13 +55,8 @@ function* setToken({ payload }) {
   if (token) api.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
-function signOut() {
-  // history.push('/');
-}
-
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest(actionType.SIGN_IN_REQUEST, signIn),
   takeLatest(actionType.SIGN_UP_SUCCESS, signUp),
-  takeLatest(actionType.SIGN_OUT_REQUEST, signOut),
 ]);

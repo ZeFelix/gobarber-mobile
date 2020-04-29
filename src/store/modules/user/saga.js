@@ -9,23 +9,25 @@ import userAction from './actionsType';
 function checkPassword(rest) {
   let data = {};
 
-  if (rest.password && rest.password === rest.confirmPassword) {
-    if (rest.oldPassword) {
-      data = rest;
+  if (rest.password) {
+    if (rest.password === rest.confirmPassword) {
+      if (rest.oldPassword) {
+        data = rest;
+      } else {
+        // eslint-disable-next-line no-throw-literal
+        throw {
+          localError: true,
+          message:
+            'Campo de senha não pode ficar em branco, preencha todos os campos!',
+        };
+      }
     } else {
       // eslint-disable-next-line no-throw-literal
       throw {
         localError: true,
-        message:
-          'Campo de senha não pode ficar em branco, preencha todos os campos!',
+        message: 'Campos de senha em brancos ou não iguais!',
       };
     }
-  } else {
-    // eslint-disable-next-line no-throw-literal
-    throw {
-      localError: true,
-      message: 'Campos de senha em brancos ou não iguais!',
-    };
   }
 
   return data;
