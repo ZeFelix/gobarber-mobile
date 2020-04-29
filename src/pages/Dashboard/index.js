@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -14,7 +13,6 @@ import Appointment from '~/components/Appoitments';
 import * as S from './styles';
 
 export default function Dashboard() {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [appoitments, setAppoitments] = useState([]);
   const { data } = useSelector((state) => state.appointment);
@@ -27,14 +25,6 @@ export default function Dashboard() {
   useEffect(() => {
     setAppoitments(appoitments);
   }, [data, appoitments]);
-
-  useEffect(() => {
-    navigation.setOptions({
-      tabBarLabel: 'Agendamentos',
-      // eslint-disable-next-line react/prop-types
-      tabBarIcon: ({ color }) => <Icon name="event" size={20} color={color} />,
-    });
-  }, [navigation]);
 
   function handleCancel(id) {
     dispatch(appoitementDeleteRequest(id));
@@ -60,3 +50,9 @@ export default function Dashboard() {
     </Background>
   );
 }
+
+export const dashboardOptions = {
+  tabBarLabel: 'Agendamentos',
+  // eslint-disable-next-line react/prop-types
+  tabBarIcon: ({ color }) => <Icon name="event" size={20} color={color} />,
+};

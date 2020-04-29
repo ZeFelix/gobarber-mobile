@@ -6,8 +6,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignUp from '~/pages/SignUp';
 import SignIn from '~/pages/SignIn';
 
-import Dashboard from '~/pages/Dashboard';
-import Profile from '~/pages/Profile';
+import Dashboard, { dashboardOptions } from '~/pages/Dashboard';
+import Profile, { profileOptions } from '~/pages/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,8 +33,12 @@ function routesSigned() {
 
   return (
     <Tab.Navigator tabBarOptions={tabBarOptions}>
-      <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={dashboardOptions}
+      />
+      <Tab.Screen name="Profile" component={Profile} options={profileOptions} />
     </Tab.Navigator>
   );
 }
