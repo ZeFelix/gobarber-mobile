@@ -6,15 +6,39 @@ import { updateProfileSuccess, updateProfileFailure } from './actions';
 
 import userAction from './actionsType';
 
+function checkPassword(rest) {
+  let data = {};
+
+  if (rest.password && rest.password === rest.confirmPassword) {
+    if (rest.oldPassword) {
+      data = rest;
+    } else {
+      // eslint-disable-next-line no-throw-literal
+      throw {
+        localError: true,
+        message:
+          'Campo de senha não pode ficar em branco, preencha todos os campos!',
+      };
+    }
+  } else {
+    // eslint-disable-next-line no-throw-literal
+    throw {
+      localError: true,
+      message: 'Campos de senha em brancos ou não iguais!',
+    };
+  }
+
+  return data;
+}
+
 function* updateProfile({ payload }) {
   try {
-    const { id, name, email, avatar_id, ...rest } = payload.data;
+    const { id, name, email, ...rest } = payload.data;
 
     const profile = {
       name,
       email,
-      avatar_id,
-      ...(rest.oldPassword ? rest : {}),
+      ...checkPassword(rest),
     };
 
     const response = yield call(api.put, `users/${id}`, profile);
@@ -23,7 +47,7 @@ function* updateProfile({ payload }) {
 
     yield put(updateProfileSuccess(response.data));
   } catch (error) {
-    const { message } = error.response.data;
+    const { message } = error.localError ? error : error.response.data;
     if (message) {
       Alert.alert('Perfil', message);
       return;

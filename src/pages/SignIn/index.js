@@ -36,6 +36,7 @@ export default function SignIn({ navigation }) {
           <S.FormInput
             autoCapitalize="none"
             autoCorrect={false}
+            blurOnSubmit={false}
             icon="mail-outline"
             placeholder="Digite seu email"
             returnKeyType="next"

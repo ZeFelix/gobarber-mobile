@@ -38,6 +38,7 @@ export default function SignUp({ navigation }) {
           <S.FormInput
             autoCapitalize="none"
             autoCorrect={false}
+            blurOnSubmit={false}
             icon="person-outline"
             onSubmitEditing={() => emailRef.current.focus()}
             placeholder="Digite Nome completo"
@@ -48,6 +49,7 @@ export default function SignUp({ navigation }) {
           <S.FormInput
             autoCapitalize="none"
             autoCorrect={false}
+            blurOnSubmit={false}
             keyboardType="email-address"
             icon="mail-outline"
             onSubmitEditing={() => passwordRef.current.focus()}
