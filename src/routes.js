@@ -8,6 +8,14 @@ import SignIn from '~/pages/SignIn';
 
 import Dashboard, { dashboardOptions } from '~/pages/Dashboard';
 import Profile, { profileOptions } from '~/pages/Profile';
+import {
+  scheduleOptions,
+  scheduleScreenOptions,
+  selectProviderOptions,
+  SelecDateTime,
+  SelectProvider,
+  Confirm,
+} from '~/pages/Schedule';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -17,6 +25,20 @@ function routesUnSigned() {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
+}
+
+function Schedule() {
+  return (
+    <Stack.Navigator screenOptions={scheduleScreenOptions}>
+      <Stack.Screen
+        name="SelectProvider"
+        component={SelectProvider}
+        options={selectProviderOptions}
+      />
+      <Stack.Screen name="SelecDateTime" component={SelecDateTime} />
+      <Stack.Screen name="Confirm" component={Confirm} />
     </Stack.Navigator>
   );
 }
@@ -37,6 +59,11 @@ function routesSigned() {
         name="Dashboard"
         component={Dashboard}
         options={dashboardOptions}
+      />
+      <Tab.Screen
+        name="Schedule"
+        component={Schedule}
+        options={scheduleOptions}
       />
       <Tab.Screen name="Profile" component={Profile} options={profileOptions} />
     </Tab.Navigator>
