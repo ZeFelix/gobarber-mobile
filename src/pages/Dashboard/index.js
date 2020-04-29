@@ -1,16 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import {
+  appointmentRequest,
+  appoitementDeleteRequest,
+} from '~/store/modules/appointment/actions';
 
 import { Background } from '~/components/shared';
 import Appointment from '~/components/Appoitments';
 
 import * as S from './styles';
 
-const data = [1, 2, 3, 4, 5];
-
 export default function Dashboard() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const [appoitments, setAppoitments] = useState([]);
+  const { data } = useSelector((state) => state.appointment);
+
+  useEffect(() => {
+    dispatch(appointmentRequest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setAppoitments(appoitments);
+  }, [data, appoitments]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -20,14 +36,25 @@ export default function Dashboard() {
     });
   }, [navigation]);
 
+  function handleCancel(id) {
+    dispatch(appoitementDeleteRequest(id));
+  }
+
   return (
     <Background>
       <S.Container>
         <S.Title>Agendamentos</S.Title>
         <S.List
           data={data}
-          renderItem={({ item }) => <Appointment data={item} />}
-          keyExtractor={(item) => String(item)}
+          renderItem={({ item }) => (
+            <Appointment
+              onCancel={() => {
+                handleCancel(item.id);
+              }}
+              data={item}
+            />
+          )}
+          keyExtractor={(item) => String(item.id)}
         />
       </S.Container>
     </Background>

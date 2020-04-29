@@ -4,7 +4,8 @@ import auth from './auth/saga';
 import user from './user/saga';
 import notifications from './notifications/saga';
 import schedules from './schedule/saga';
+import appointment from './appointment/saga';
 
 export default function* rootSaga() {
-  return yield all([auth, user, notifications, schedules]);
+  return yield all([auth, user, notifications, schedules, appointment]);
 }

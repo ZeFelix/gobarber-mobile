@@ -8,6 +8,7 @@ export const Container = styled.View`
   justify-content: space-between;
   padding: 20px;
   margin-bottom: 15px;
+  opacity: ${(props) => (props.past ? 0.6 : 1)}
   display: flex;
 `;
 
@@ -21,6 +22,7 @@ export const Avatar = styled.Image`
   width: 50px;
   height: 50px;
   border-radius: 25px;
+  background: #a8a3a2;
 `;
 
 export const Info = styled.View`
