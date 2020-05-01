@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Background } from '~/components/shared';
+import { Background, DateInput } from '~/components/shared';
 
 // import { Container } from './styles';
 
 export function SelectDateTime() {
-  return <Background />;
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <Background>
+      <DateInput date={date} onChange={setDate} />
+    </Background>
+  );
 }
 
 export const SelectDateTimeOptions = ({ navigation }) => ({
-  title: 'Selecione a Agenda',
+  title: 'Selecione o horário',
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
