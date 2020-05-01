@@ -1,5 +1,4 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export * from './Confirm';
@@ -18,20 +17,11 @@ export const scheduleOptions = {
   ),
 };
 
-export const scheduleScreenOptions = ({ navigation }) => ({
+export const scheduleScreenOptions = () => ({
   headerTransparent: true,
   headerTintColor: '#fff',
   headerTitleAlign: 'center',
   headerLeftContainerStyle: {
     marginLeft: 20,
   },
-  headerLeft: () => (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Dashboard');
-      }}
-    >
-      <Icon name="chevron-left" size={20} color="#fff" />
-    </TouchableOpacity>
-  ),
 });

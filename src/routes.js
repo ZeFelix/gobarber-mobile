@@ -12,7 +12,8 @@ import {
   scheduleOptions,
   scheduleScreenOptions,
   selectProviderOptions,
-  SelecDateTime,
+  SelectDateTimeOptions,
+  SelectDateTime,
   SelectProvider,
   Confirm,
 } from '~/pages/Schedule';
@@ -37,7 +38,11 @@ function Schedule() {
         component={SelectProvider}
         options={selectProviderOptions}
       />
-      <Stack.Screen name="SelecDateTime" component={SelecDateTime} />
+      <Stack.Screen
+        name="SelectDateTime"
+        component={SelectDateTime}
+        options={SelectDateTimeOptions}
+      />
       <Stack.Screen name="Confirm" component={Confirm} />
     </Stack.Navigator>
   );

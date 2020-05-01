@@ -5,6 +5,7 @@ import user from './user/reducers';
 import notifications from './notifications/reducers';
 import schedule from './schedule/reducers';
 import appointment from './appointment/reducers';
+import provider from './provider/reducers';
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   notifications,
   schedule,
   appointment,
+  provider,
 });
