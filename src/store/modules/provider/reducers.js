@@ -3,6 +3,7 @@ import actionTypes from './actionTypes';
 
 const initialState = {
   data: [],
+  hoursData: [],
 };
 
 export default function provider(state = initialState, action) {
@@ -10,6 +11,10 @@ export default function provider(state = initialState, action) {
     switch (action.type) {
       case actionTypes.PROVIDE_SUCCESS:
         draft.data = action.payload.data;
+        break;
+
+      case actionTypes.PROVIDE_DATETIME_SUCCESS:
+        draft.hoursData = action.payload.data;
         break;
 
       default:

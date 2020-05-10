@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as S from './styles';
 
-export function DateInput({ date }) {
+export function DateInput({ date, onChange }) {
   const [localDate, setDate] = useState(date || new Date());
   const [show, setShow] = useState(false);
 
@@ -18,10 +18,11 @@ export function DateInput({ date }) {
     [localDate]
   );
 
-  const onChange = (event, selectedDate) => {
+  const handleChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    onChange(currentDate);
   };
 
   return (
@@ -41,7 +42,7 @@ export function DateInput({ date }) {
           mode="date"
           is24Hour
           display="default"
-          onChange={onChange}
+          onChange={handleChange}
           locale={pt}
         />
       )}

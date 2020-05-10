@@ -31,7 +31,9 @@ export function SelectProvider({ navigation }) {
           keyExtractor={(provider) => String(provider.id)}
           renderItem={({ item }) => (
             <S.Provider
-              onPress={() => navigation.navigate('SelectDateTime', { item })}
+              onPress={() =>
+                navigation.navigate('SelectDateTime', { provider: item })
+              }
             >
               <S.Avatar source={sourceImage(item)} />
               <S.Name>{item.name}</S.Name>
