@@ -43,7 +43,29 @@ function* providerDateTimeRequest({ payload }) {
   }
 }
 
+function* providerSendProvider({ payload }) {
+  try {
+    const { provider, time: date, navigation } = payload;
+
+    yield call(api.post, `/appointments`, { provider_id: provider.id, date });
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Dashboard' }],
+    });
+  } catch (error) {
+    const { message } = error.response.data;
+
+    if (message) {
+      Alert.alert('Provider', message);
+    } else {
+      Alert.alert('Provider', 'Deu merda');
+    }
+  }
+}
+
 export default all([
   takeLatest(actionTypes.PROVIDE_REQUEST, providerRequest),
   takeLatest(actionTypes.PROVIDE_DATETIME_REQUEST, providerDateTimeRequest),
+  takeLatest(actionTypes.PROVIDE_SEND_SCHEDULE, providerSendProvider),
 ]);

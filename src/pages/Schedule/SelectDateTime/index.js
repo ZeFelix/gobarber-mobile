@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { providerDateTimeRequest } from '~/store/modules/provider/actions';
@@ -20,8 +19,8 @@ export function SelectDateTime({ route, navigation }) {
     dispacth(providerDateTimeRequest(provider, date.getTime()));
   }, [dispacth, provider, date]);
 
-  function handleSelectHour(hour) {
-    navigation.navigate('Confirm', provider, hour);
+  function handleSelectHour(time) {
+    navigation.navigate('Confirm', { provider, time });
   }
 
   return (

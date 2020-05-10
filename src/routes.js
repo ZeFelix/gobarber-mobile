@@ -16,6 +16,7 @@ import {
   SelectDateTime,
   SelectProvider,
   Confirm,
+  confirmOptions,
 } from '~/pages/Schedule';
 
 const Stack = createStackNavigator();
@@ -43,7 +44,11 @@ function Schedule() {
         component={SelectDateTime}
         options={SelectDateTimeOptions}
       />
-      <Stack.Screen name="Confirm" component={Confirm} />
+      <Stack.Screen
+        name="Confirm"
+        component={Confirm}
+        options={confirmOptions}
+      />
     </Stack.Navigator>
   );
 }

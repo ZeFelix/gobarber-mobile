@@ -8,7 +8,7 @@ export const Container = styled.View`
   justify-content: space-between;
   padding: 20px;
   margin-bottom: 15px;
-  opacity: ${(props) => (props.past ? 0.6 : 1)}
+  opacity: ${(props) => (props.past ? 0.6 : 1)};
   display: flex;
 `;
 

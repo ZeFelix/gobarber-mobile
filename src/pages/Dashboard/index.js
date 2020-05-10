@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -16,11 +17,12 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const [appoitments, setAppoitments] = useState([]);
   const { data } = useSelector((state) => state.appointment);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
+    if (!isFocused) return;
     dispatch(appointmentRequest());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch, isFocused]);
 
   useEffect(() => {
     setAppoitments(appoitments);
